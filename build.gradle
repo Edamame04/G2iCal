@@ -1,0 +1,25 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'iCalGenerator'
+sourceCompatibility = 11
+targetCompatibility = 11
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.api-client:google-api-client:2.0.0'
+    implementation 'com.google.oauth-client:google-oauth-client-jetty:1.34.1'
+    implementation 'com.google.apis:google-api-services-calendar:v3-rev20220715-2.0.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    // JCalendar for proper date picker components
+    implementation 'com.toedter:jcalendar:1.4'
+
+    // Look and Feel for Java Swing
+    implementation 'com.formdev:flatlaf:3.2.5'
+    implementation 'com.formdev:flatlaf-extras:3.2.5'
+}
