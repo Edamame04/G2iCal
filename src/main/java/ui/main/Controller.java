@@ -197,7 +197,7 @@ public class Controller {
             // Export the iCal data to a file
             try {
                 iCal.exportICalToFile(filePath, fileName);
-                view.setStatusMessage("Exported events to " + filePath +"/"+ fileName +" successfully!");
+                view.setStatusMessage("Exported events to " + settings.getFullExportPath() +" successfully!");
             } catch (ICalExportException e) {
                 view.showErrorDialog(e.getMessage());
                 view.setStatusMessage(e.getMessage());

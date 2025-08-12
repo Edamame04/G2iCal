@@ -3,7 +3,6 @@
  * This class represents the main user interface for the G2iCal application.
  * It handles the display of calendars, event data, and user interactions.
  * The view is designed to be responsive and user-friendly.
-
  * Many methods in this class are package-private to only allow access from the Controller class.
  */
 

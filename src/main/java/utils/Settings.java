@@ -135,19 +135,6 @@ public class Settings {
         return filePath;
     }
 
-    // Setters
-    public void setFileName(String fileName) {
-        if (fileName != null && !fileName.trim().isEmpty()) {
-            this.fileName = fileName.trim();
-        }
-    }
-
-    public void setFilePath(String filePath) {
-        if (filePath != null && !filePath.trim().isEmpty()) {
-            this.filePath = filePath.trim();
-        }
-    }
-
     /**
      * Reset settings to defaults.
      */
