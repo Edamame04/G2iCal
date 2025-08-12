@@ -14,6 +14,7 @@ import utils.EventFactory;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,5 +131,32 @@ public class ICal {
         } catch (IOException e) {
             throw new ICalExportException("Failed to export iCal to file: " + filePath + "/" + fileName, e);
         }
+    }
+
+    /**
+     * Converts the events to a table model format for UI display.
+     *
+     * @return 2D Object array where each row represents an event with columns:
+     *         [Name, Start, End, Location, Description, ...]
+     */
+    public Object[][] toTableModel() {
+        if (events == null || events.isEmpty()) {
+            return new Object[0][6]; // Return empty array with 6 columns
+        }
+
+        Object[][] tableData = new Object[events.size()][6];
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        for (int i = 0; i < events.size(); i++) {
+            CalendarEvent event = events.get(i);
+
+            tableData[i][0] = event.getSummary() != null ? event.getSummary() : ""; // Name
+            tableData[i][1] = event.getStart() != null ? event.getStart().format(formatter) : ""; // Start
+            tableData[i][2] = event.getEnd() != null ? event.getEnd().format(formatter) : ""; // End
+            tableData[i][3] = event.getLocation() != null ? event.getLocation() : ""; // Location
+            tableData[i][4] = event.getDescription() != null ? event.getDescription() : ""; // Description
+        }
+
+        return tableData;
     }
 }

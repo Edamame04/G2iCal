@@ -1,12 +1,17 @@
+/**
+ * controller.java
+ * This class serves as the controller for the main application screen.
+ * It handles user interactions, manages the view, and communicates with the Google Calendar API.
+ * Many methods in this class are package-private to only allow access from the View class.
+ */
 package ui.main;
 
-import calendar.CalendarEvent;
 import calendar.ICal;
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.model.CalendarListEntry;
 import com.google.api.services.calendar.model.Events;
+import exceptions.ICalExportException;
 import utils.CalendarApiConnector;
-import utils.EventFactory;
 import utils.InputValidator;
 import utils.Settings;
 
@@ -44,7 +49,7 @@ public class Controller {
     /**
      * Loads initial data when the application starts
      */
-    private void loadInitialData() {
+    void loadInitialData() {
         try {
             List<CalendarListEntry> calendars = calendarApiConnector.getUserCalendars();
             String[] calenderIds = new String[calendars.size()];
@@ -65,12 +70,13 @@ public class Controller {
      *
      * @return The user's display name
      */
-    public String getUserName() {
+    String getUserName() {
         try {
             return calendarApiConnector.getUser();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            view.showErrorDialog("There was an error loading the User: " + e.getMessage());
         }
+        return "Unknown User";
     }
 
     /**
@@ -78,7 +84,7 @@ public class Controller {
      *
      * @return The export file name
      */
-    public String getFileName() {
+    String getFileName() {
         return settings.getFileName();
     }
 
@@ -87,7 +93,7 @@ public class Controller {
      *
      * @return The export file path
      */
-    public String getFilePath() {
+    String getFilePath() {
         return settings.getFilePath();
     }
 
@@ -97,28 +103,28 @@ public class Controller {
      * @param fileName New export file name
      * @param filePath New export file path
      */
-    public void updateSettings(String fileName, String filePath) {
+    void updateSettings(String fileName, String filePath) {
         settings.updateSettings(fileName, filePath);
-        settings.saveSettings();
     }
 
     /**
-     * Handles the exit to start screen action
+     * This method closes the current view and reinitializes the start controller.
+     * It does not log out the user from Google Calendar.
      */
-    public void exitToStartScreen() {
+    void exitToStartScreen() {
         closeView();
         ui.start.Controller.getInstance().showView(); // Reinitialize the start controller
     }
 
     /**
-     * Handles the logout action
+     * Handles the logout action with the Google Calendar API.
      */
     public void logout() {
         // Removing the stored credentials
         try {
             CalendarApiConnector.logout();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            view.showErrorDialog("There was an error logging out: " + e.getMessage());
         }
         exitToStartScreen();
     }
@@ -152,74 +158,17 @@ public class Controller {
 
             // Fetch events from Google Calendar API
             Events events = calendarApiConnector.getCalendarEventsByCalendarId(calendarId, startTime, endTime);
+            iCal = new ICal(events);
 
-            // Convert events to table format
-            Object[][] eventData = convertEventsToTableData(events);
 
             // Update the view with loaded events
-            //view.updateEventTable(eventData);
+            view.updateEventTable(iCal.toTableModel());
             view.setStatusMessage("Loaded " + events.getItems().size() + " events successfully");
             view.setExportButtonEnabled(true);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             view.showErrorDialog("Failed to load events: " + e.getMessage());
             view.setExportButtonEnabled(false);
-        } catch (Exception e) {
-            view.showErrorDialog("Unexpected error: " + e.getMessage());
-            view.setExportButtonEnabled(false);
-        }
-    }
-
-    /**
-     * Converts Google Calendar Events to table data format using Event factory and converter
-     *
-     * @param events The Events object from Google Calendar API
-     * @return 2D array of event data for table display
-     */
-    private Object[][] convertEventsToTableData(Events events) {
-        if (events.getItems() == null || events.getItems().isEmpty()) {
-            return new Object[0][5]; // Return empty array if no events
-        }
-
-        Object[][] eventData = new Object[events.getItems().size()][5];
-
-        for (int i = 0; i < events.getItems().size(); i++) {
-            com.google.api.services.calendar.model.Event googleEvent = events.getItems().get(i);
-
-            // Use your Event factory/converter to create Event object
-            // Assuming you have an EventFactory or EventConverter class
-            CalendarEvent event = EventFactory.createFromGoogle(googleEvent);
-            // Or: Event event = EventConverter.convertGoogleEvent(googleEvent);
-
-            // Extract event details from your Event object
-            String title = event.getSummary() != null ? event.getSummary() : "No Title";
-            String startTime = formatEventDateTime(event.getStart());
-            String endTime = formatEventDateTime(event.getEnd());
-            String location = event.getLocation() != null ? event.getLocation() : "";
-            String description = event.getDescription() != null ? event.getDescription() : "";
-
-            eventData[i] = new Object[]{title, startTime, endTime, location, description};
-        }
-
-        return eventData;
-    }
-
-    /**
-     * Formats DateTime from your Event class to readable string
-     *
-     * @param dateTime The DateTime object from your Event
-     * @return Formatted date string
-     */
-    private String formatEventDateTime(Object dateTime) {
-        if (dateTime == null) return "";
-
-        // Adjust this based on your Event class's DateTime implementation
-        if (dateTime instanceof DateTime) {
-            return ((DateTime) dateTime).toStringRfc3339();
-        } else if (dateTime instanceof java.time.LocalDateTime) {
-            return dateTime.toString();
-        } else {
-            return dateTime.toString();
         }
     }
 
@@ -228,16 +177,29 @@ public class Controller {
      */
     public void exportEvents() {
         // Ensure events are loaded before exporting
+        if (iCal != null) {
+            // Get the file name and path from settings
+            String fileName = getFileName();
+            String filePath = getFilePath();
 
-        // Get the file name and path from settings
-        String fileName = getFileName();
-        String filePath = getFilePath();
+            // Export the iCal data to a file
+            try {
+                iCal.exportICalToFile(filePath, fileName);
+                view.setStatusMessage("Exported events to " + filePath +"/"+ fileName +" successfully!");
+            } catch (ICalExportException e) {
+                view.showErrorDialog("Failed to export events: " + e.getMessage());
+            }
+        } else  {
+            view.showErrorDialog("No events loaded to export.");
+        }
+    }
 
-
-
-        // Placeholder implementation
-        view.setStatusMessage("Export completed successfully!");
-        System.out.println("Events exported to iCal format");
+    /**
+     * Resets the controller state, clearing the iCal data and resetting the view.
+     */
+    public void reset() {
+        this.iCal = null;
+        view.reset();
     }
 
     /**
@@ -246,12 +208,5 @@ public class Controller {
     private void closeView() {
         view.setVisible(false); // Hide the view
         view.dispose(); // Dispose of the view resources
-    }
-
-    public void resetCalendarSelection() {
-    }
-
-    public void reset() {
-        view.reset();
     }
 }

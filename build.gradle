@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = 'iCalGenerator'
+mainClassName = 'G2iCalGUI'
 sourceCompatibility = 11
 targetCompatibility = 11
 version = '1.0'
@@ -21,5 +21,4 @@ dependencies {
 
     // Look and Feel for Java Swing
     implementation 'com.formdev:flatlaf:3.2.5'
-    implementation 'com.formdev:flatlaf-extras:3.2.5'
 }

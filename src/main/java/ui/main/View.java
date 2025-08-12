@@ -3,6 +3,8 @@
  * This class represents the main user interface for the G2iCal application.
  * It handles the display of calendars, event data, and user interactions.
  * The view is designed to be responsive and user-friendly.
+ *
+ * Many methods in this class are package-private to only allow access from the Controller class.
  */
 
 package ui.main;
@@ -456,9 +458,9 @@ public class View extends JFrame {
      *
      * @param events 2D array of event data
      */
-    public void updateEventTable(CalendarEvent[][] events) {
+    public void updateEventTable(Object[][] events) {
         tableModel.setRowCount(0); // Clear existing data
-        for (CalendarEvent[] event : events) {
+        for (Object[] event : events) {
             tableModel.addRow(event);
         }
     }
