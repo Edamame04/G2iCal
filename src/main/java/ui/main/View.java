@@ -664,8 +664,8 @@ public class View extends JFrame {
                 // Left rounded, right straight
                 shape = new java.awt.geom.RoundRectangle2D.Float(x, y, width + radius, height - 1, radius, radius);
             } else if (!leftRounded && rightRounded) {
-                // Right rounded, left straight
-                shape = new java.awt.geom.RoundRectangle2D.Float(x - radius, y, width + radius, height - 1, radius, radius);
+                // Right rounded, left straight - fix the width calculation
+                shape = new java.awt.geom.RoundRectangle2D.Float(x - radius, y, width + radius - 1, height - 1, radius, radius);
             } else {
                 // Fully rounded
                 shape = new java.awt.geom.RoundRectangle2D.Float(x, y, width - 1, height - 1, radius, radius);
