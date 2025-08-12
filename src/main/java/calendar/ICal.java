@@ -115,10 +115,9 @@ public class ICal {
      *
      * @param filePath The directory path where the file will be saved
      * @param fileName The name of the file to save the iCal data to
-     * @return true if export was successful
      * @throws ICalExportException if writing to the file fails
      */
-    public boolean exportICalToFile(String filePath, String fileName) throws ICalExportException {
+    public void exportICalToFile(String filePath, String fileName) throws ICalExportException {
         try {
             Files.write(
                     Paths.get(filePath, fileName),
@@ -127,9 +126,9 @@ public class ICal {
                     java.nio.file.StandardOpenOption.CREATE,
                     java.nio.file.StandardOpenOption.TRUNCATE_EXISTING
             );
-            return true;
         } catch (IOException e) {
-            throw new ICalExportException("Failed to export iCal to file: " + filePath + "/" + fileName, e);
+            throw new ICalExportException("Failed to export iCal to file: " + filePath + "/" + fileName +
+                    ". Try checking directory access.", e);
         }
     }
 

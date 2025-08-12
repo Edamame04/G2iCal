@@ -312,6 +312,29 @@ public class InputValidator {
         }
         return null;
     }
+    /**
+     * Validates a file path for the iCal export.
+     * Checks if the path is not null or empty or not accessible.
+     *
+     * @param filePath the file path to validate
+     * @return ValidationResult containing validation status and error message if invalid
+     */
+    public static ValidationResult validateFilePath(String filePath) {
+        // Check if input is null or empty
+        if (filePath == null || filePath.trim().isEmpty()) {
+            return new ValidationResult(false, "File path cannot be empty");
+        }
+
+        String trimmedFilePath = filePath.trim();
+
+        // Check if the path is accessible
+        java.io.File file = new java.io.File(trimmedFilePath);
+        if (!file.canWrite()) {
+            return new ValidationResult(false, "Cannot write to the specified file path: " + trimmedFilePath);
+        }
+
+        return new ValidationResult(true, null);
+    }
 
     /**
      * Inner class to represent validation results.

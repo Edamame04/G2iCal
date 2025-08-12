@@ -11,6 +11,7 @@ package ui.main;
 
 import calendar.CalendarEvent;
 import com.toedter.calendar.JDateChooser;
+import utils.InputValidator;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -382,6 +383,11 @@ public class View extends JFrame {
             Date endDate = endDateChooser.getDate();
 
             // Validate inputs
+            if (startDate == null || endDate == null) {
+                showErrorDialog("Please select both valid start and end dates.");
+                return;
+            }
+
             if (selectedCalendarId == null || selectedCalendarId.isEmpty()) {
                 showErrorDialog("Please select a calendar.");
                 return;
@@ -532,6 +538,7 @@ public class View extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 1.0;
         JTextField fileNameField = new JTextField(fileName, 20);
+        fileNameField.setBorder(new CleanRoundedBorder(8, true, true));
         formPanel.add(fileNameField, gbc);
 
         // Export file path
@@ -547,6 +554,7 @@ public class View extends JFrame {
         JPanel locationPanel = new JPanel(new BorderLayout(5, 0));
         JTextField locationField = new JTextField(filePath, 20);
         locationField.setEditable(false);
+        locationField.setBorder(new CleanRoundedBorder(8, true, false));
         JButton browseButton = new JButton("Browse...");
 
         browseButton.addActionListener(e -> {
@@ -587,9 +595,10 @@ public class View extends JFrame {
             String newFileName = fileNameField.getText().trim();
             String newFilePath = locationField.getText().trim();
 
-            // Validate inputs
-            if (newFileName.isEmpty()) {
-                JOptionPane.showMessageDialog(settingsDialog, "File name cannot be empty.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
+            // Validate file name and path
+            InputValidator.ValidationResult fileNameValidator = InputValidator.validateFileName(newFileName);
+            if (!fileNameValidator.isValid()) {
+                JOptionPane.showMessageDialog(settingsDialog, fileNameValidator.getErrorMessage(), "Invalid Input", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 

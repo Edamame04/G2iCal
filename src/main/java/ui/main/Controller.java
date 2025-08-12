@@ -182,12 +182,25 @@ public class Controller {
             String fileName = getFileName();
             String filePath = getFilePath();
 
+            // normalize the file name
+            fileName = InputValidator.normalizeFileName(fileName);
+
+
+            // Validate the file path again because the user might have removed a directory
+            InputValidator.ValidationResult pathResult = InputValidator.validateFilePath(filePath);
+            if (!pathResult.isValid()) {
+                view.showErrorDialog("Invalid file path: " + pathResult.getErrorMessage() + ". Please check your settings.");
+                view.setStatusMessage("Invalid file path: " + pathResult.getErrorMessage());
+                return;
+            }
+
             // Export the iCal data to a file
             try {
                 iCal.exportICalToFile(filePath, fileName);
                 view.setStatusMessage("Exported events to " + filePath +"/"+ fileName +" successfully!");
             } catch (ICalExportException e) {
-                view.showErrorDialog("Failed to export events: " + e.getMessage());
+                view.showErrorDialog(e.getMessage());
+                view.setStatusMessage(e.getMessage());
             }
         } else  {
             view.showErrorDialog("No events loaded to export.");
