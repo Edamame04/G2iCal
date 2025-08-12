@@ -58,7 +58,7 @@ public class View extends JFrame {
         setTitle("G2iCal");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(480, 300)); // Set minimum size for responsiveness
-        setPreferredSize(new Dimension(900, 700)); // default size
+        setPreferredSize(new Dimension(480, 700)); // default size
         setLocationRelativeTo(null);
 
         // Set Menu Bar
@@ -161,6 +161,7 @@ public class View extends JFrame {
 
     /**
      * Creates the main content panel with all UI components
+     * Engineering
      */
     private void createMainContent() {
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
@@ -183,59 +184,77 @@ public class View extends JFrame {
 
     private JPanel createFormPanel() {
         JPanel formPanel = new JPanel(new GridBagLayout());
-        formPanel.setBorder(BorderFactory.createEmptyBorder(3, 0, 10, 0));
+        formPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 15, 0));
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(8, 8, 8, 8);
 
-
-        // Form label
+        // Row 1: Title
         gbc.gridx = 0; gbc.gridy = 0;
-        gbc.gridwidth = 5;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.weightx = 0;
-        JLabel calendarLabel = new JLabel("Select a calendar and date range for the export:");
-        formPanel.add(calendarLabel, gbc);
-
-
-        // Calendar dropdown
-        gbc.gridx = 0; gbc.gridy = 1;
-        gbc.gridwidth = 5;
+        gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 1.0;
-        calendarDropdown = new JComboBox<>();
-        calendarDropdown.setSize(new Dimension(400, 35));
-        formPanel.add(calendarDropdown, gbc);
-        // Date range controls
-        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.WEST;
+        JLabel titleLabel = new JLabel("Select a calendar and date range for the export:");
+        titleLabel.setFont(titleLabel.getFont().deriveFont(Font.BOLD, 14f));
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
+        formPanel.add(titleLabel, gbc);
+
+        // Row 2: Calendar selection
+        gbc.gridy = 1;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.NONE;
         gbc.weightx = 0;
-
         gbc.gridx = 0;
-        JLabel fromLabel = new JLabel("Start:");
+        JLabel calendarLabel = new JLabel("Calendar:");
+        formPanel.add(calendarLabel, gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 1.0;
+        calendarDropdown = new JComboBox<>();
+        calendarDropdown.setPreferredSize(new Dimension(300, 28));
+        formPanel.add(calendarDropdown, gbc);
+
+        // Row 3: Start date
+        gbc.gridy = 2;
+        gbc.gridx = 0;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 0;
+        JLabel fromLabel = new JLabel("Start Date:");
         formPanel.add(fromLabel, gbc);
 
         gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 1.0;
         startDateChooser = createStyledDateChooser();
         formPanel.add(startDateChooser, gbc);
 
-        gbc.gridx = 2;
-        JLabel toLabel = new JLabel("End:");
+        // Row 4: End date
+        gbc.gridy = 3;
+        gbc.gridx = 0;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 0;
+        JLabel toLabel = new JLabel("End Date:");
         formPanel.add(toLabel, gbc);
 
-        gbc.gridx = 3;
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 1.0;
         endDateChooser = createStyledDateChooser();
         formPanel.add(endDateChooser, gbc);
 
-        // Load Data button
-        gbc.gridx = 4;
-        gbc.anchor = GridBagConstraints.EAST;
-        gbc.weightx = 1.0;
-        loadDataButton = new JButton("Load Data");
+        // Row 5: Load button (in column 2)
+        gbc.gridy = 4;
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 0;
+        gbc.anchor = GridBagConstraints.EAST; // Changed from WEST to EAST
+        gbc.insets = new Insets(8, 8, 8, 8); // Extra top margin for the button
+
+        loadDataButton = new JButton("Load Calendar Data");
         loadDataButton.setBackground(LIGHT_BLUE);
-        loadDataButton.setSize(new Dimension(100, 35));
+        loadDataButton.setPreferredSize(new Dimension(150, 28));
         loadDataButton.addActionListener(new LoadDataActionListener());
         formPanel.add(loadDataButton, gbc);
 
@@ -269,8 +288,8 @@ public class View extends JFrame {
 
             if (calendarButton != null) {
                 // Create clean rounded borders like the Load Data button
-                textField.setBorder(new CleanRoundedBorder(8, true, false)); // Left side rounded
-                calendarButton.setBorder(new CleanRoundedBorder(8, false, true)); // Right side rounded
+                textField.setBorder(new CleanRoundedBorder(12, true, false)); // Left side rounded
+                calendarButton.setBorder(new CleanRoundedBorder(12, false, true)); // Right side rounded
 
                 // Style the button to match
                 calendarButton.setContentAreaFilled(false);
@@ -537,7 +556,7 @@ public class View extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 1.0;
         JTextField fileNameField = new JTextField(fileName, 20);
-        fileNameField.setBorder(new CleanRoundedBorder(8, true, true));
+        fileNameField.setBorder(new CleanRoundedBorder(12, true, true));
         formPanel.add(fileNameField, gbc);
 
         // Export file path
@@ -553,7 +572,7 @@ public class View extends JFrame {
         JPanel locationPanel = new JPanel(new BorderLayout(5, 0));
         JTextField locationField = new JTextField(filePath, 20);
         locationField.setEditable(false);
-        locationField.setBorder(new CleanRoundedBorder(8, true, false));
+        locationField.setBorder(new CleanRoundedBorder(12, true, true));
         JButton browseButton = new JButton("Browse...");
 
         browseButton.addActionListener(e -> {
@@ -655,7 +674,7 @@ public class View extends JFrame {
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             Graphics2D g2d = (Graphics2D) g.create();
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g2d.setColor(new Color(160, 160, 160)); // Light gray border
+            g2d.setColor(new Color(209, 209, 209)); // Light gray border
             g2d.setStroke(new BasicStroke(1.0f));
 
             // Create the shape
