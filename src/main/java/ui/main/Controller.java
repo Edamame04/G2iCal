@@ -55,7 +55,7 @@ public class Controller {
             }
             view.updateCalendarList(calenderIds, calenderNames);
         } catch (IOException e) {
-            view.showErrorDialog(e.getMessage());
+            view.showErrorDialog("There was an error loading calendars: " + e.getMessage());
         }
 
     }

@@ -180,143 +180,70 @@ public class View extends JFrame {
     }
 
     private JPanel createFormPanel() {
-        JPanel formPanel = new JPanel(new BorderLayout());
+        JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBorder(BorderFactory.createEmptyBorder(3, 0, 10, 0));
 
-        // Form label at the top
-        JLabel calendarLabel = new JLabel("Select a calendar and date range for the export:");
-        formPanel.add(calendarLabel, BorderLayout.NORTH);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.anchor = GridBagConstraints.WEST;
 
-        // Create responsive controls panel
-        JPanel controlsPanel = new ResponsiveFormPanel();
-        formPanel.add(controlsPanel, BorderLayout.CENTER);
+
+        // Form label
+        gbc.gridx = 0; gbc.gridy = 0;
+        gbc.gridwidth = 5;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 0;
+        JLabel calendarLabel = new JLabel("Select a calendar and date range for the export:");
+        formPanel.add(calendarLabel, gbc);
+
+
+        // Calendar dropdown
+        gbc.gridx = 0; gbc.gridy = 1;
+        gbc.gridwidth = 5;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 1.0;
+        calendarDropdown = new JComboBox<>();
+        calendarDropdown.setSize(new Dimension(400, 35));
+        formPanel.add(calendarDropdown, gbc);
+        // Date range controls
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 0;
+
+        gbc.gridx = 0;
+        JLabel fromLabel = new JLabel("Start:");
+        formPanel.add(fromLabel, gbc);
+
+        gbc.gridx = 1;
+        startDateChooser = createStyledDateChooser();
+        formPanel.add(startDateChooser, gbc);
+
+        gbc.gridx = 2;
+        JLabel toLabel = new JLabel("End:");
+        formPanel.add(toLabel, gbc);
+
+        gbc.gridx = 3;
+        endDateChooser = createStyledDateChooser();
+        formPanel.add(endDateChooser, gbc);
+
+        // Load Data button
+        gbc.gridx = 4;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 1.0;
+        loadDataButton = new JButton("Load Data");
+        loadDataButton.setBackground(LIGHT_BLUE);
+        loadDataButton.setSize(new Dimension(100, 35));
+        loadDataButton.addActionListener(new LoadDataActionListener());
+        formPanel.add(loadDataButton, gbc);
+
+        // Set default dates (from 30 days ago to today)
+        Calendar cal = Calendar.getInstance();
+        endDateChooser.setDate(cal.getTime());
+        cal.add(Calendar.DAY_OF_MONTH, -30);
+        startDateChooser.setDate(cal.getTime());
 
         return formPanel;
-    }
-
-    /**
-     * Custom panel that layouts form controls responsively based on available width
-     */
-    private class ResponsiveFormPanel extends JPanel {
-        private static final int MIN_WIDTH_FOR_SINGLE_ROW = 800; // Threshold for single-row layout
-        private JPanel calendarPanel;
-        private JPanel datePanel;
-        private JPanel buttonPanel;
-        private boolean isInitialized = false;
-
-        public ResponsiveFormPanel() {
-            createComponents();
-            // Start with the two-row layout as default
-            layoutAsTwoRows();
-        }
-
-        private void createComponents() {
-            // Calendar dropdown panel
-            calendarPanel = new JPanel(new BorderLayout());
-            calendarDropdown = new JComboBox<>();
-            calendarPanel.add(calendarDropdown, BorderLayout.CENTER);
-
-            // Date controls panel
-            datePanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
-
-            JLabel fromLabel = new JLabel("Start:");
-            startDateChooser = createStyledDateChooser();
-            JLabel toLabel = new JLabel("End:");
-            endDateChooser = createStyledDateChooser();
-
-            datePanel.add(fromLabel);
-            datePanel.add(startDateChooser);
-            datePanel.add(toLabel);
-            datePanel.add(endDateChooser);
-
-            // Load button panel
-            buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
-            loadDataButton = new JButton("Load Data");
-            loadDataButton.setBackground(LIGHT_BLUE);
-            loadDataButton.addActionListener(new LoadDataActionListener());
-            buttonPanel.add(loadDataButton);
-
-            // Set default dates (from 30 days ago to today)
-            Calendar cal = Calendar.getInstance();
-            endDateChooser.setDate(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -30);
-            startDateChooser.setDate(cal.getTime());
-
-            isInitialized = true;
-        }
-
-        private void layoutAsSingleRow() {
-            removeAll();
-            setLayout(new GridBagLayout());
-
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.insets = new Insets(5, 5, 5, 5);
-            gbc.anchor = GridBagConstraints.WEST;
-
-            // Calendar dropdown
-            gbc.gridx = 0;
-            gbc.gridy = 0;
-            gbc.weightx = 0.4;
-            gbc.fill = GridBagConstraints.HORIZONTAL;
-            add(calendarPanel, gbc);
-
-            // Date controls
-            gbc.gridx = 1;
-            gbc.gridy = 0;
-            gbc.weightx = 0.4;
-            gbc.fill = GridBagConstraints.NONE;
-            add(datePanel, gbc);
-
-            // Load button
-            gbc.gridx = 2;
-            gbc.gridy = 0;
-            gbc.weightx = 0.2;
-            gbc.fill = GridBagConstraints.HORIZONTAL;
-            gbc.anchor = GridBagConstraints.EAST;
-            add(buttonPanel, gbc);
-        }
-
-        private void layoutAsTwoRows() {
-            removeAll();
-            setLayout(new BorderLayout(5, 5));
-
-            // First row: Calendar dropdown
-            add(calendarPanel, BorderLayout.NORTH);
-
-            // Second row: Date controls and button
-            JPanel bottomRow = new JPanel(new BorderLayout());
-            bottomRow.add(datePanel, BorderLayout.WEST);
-            bottomRow.add(buttonPanel, BorderLayout.EAST);
-            add(bottomRow, BorderLayout.CENTER);
-        }
-
-        private void updateLayout() {
-            if (!isInitialized) return;
-
-            int currentWidth = getWidth();
-            if (currentWidth >= MIN_WIDTH_FOR_SINGLE_ROW) {
-                layoutAsSingleRow();
-            } else {
-                layoutAsTwoRows();
-            }
-
-            revalidate();
-            repaint();
-        }
-
-        @Override
-        public void doLayout() {
-            super.doLayout();
-            // Only update layout after the panel has been properly sized
-            SwingUtilities.invokeLater(this::updateLayout);
-        }
-
-        @Override
-        public void setBounds(int x, int y, int width, int height) {
-            super.setBounds(x, y, width, height);
-            // Only update layout after the panel has been properly sized
-            SwingUtilities.invokeLater(this::updateLayout);
-        }
     }
 
     private JDateChooser createStyledDateChooser() {
