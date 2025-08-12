@@ -3,7 +3,7 @@
  * This class represents the main user interface for the G2iCal application.
  * It handles the display of calendars, event data, and user interactions.
  * The view is designed to be responsive and user-friendly.
- *
+
  * Many methods in this class are package-private to only allow access from the Controller class.
  */
 
@@ -267,6 +267,13 @@ public class View extends JFrame {
         return formPanel;
     }
 
+    /**
+     * Creates a styled date chooser with a clean rounded border.
+     * The date chooser has a connected appearance with the Load Data button.
+     * It uses a custom border to achieve the desired look.
+     *
+     * @return A JDateChooser with custom styling.
+     */
     private JDateChooser createStyledDateChooser() {
         JDateChooser dateChooser = new JDateChooser();
         dateChooser.setDateFormatString("yyyy-MM-dd");
@@ -306,6 +313,12 @@ public class View extends JFrame {
         return dateChooser;
     }
 
+    /**
+     * Creates the event table panel with a responsive design.
+     * The table displays calendar events in a read-only format.
+     *
+     * @return A JPanel containing the event table.
+     */
     private JPanel createEventTablePanel() {
         JPanel panel = new JPanel(new BorderLayout());
 
@@ -341,6 +354,12 @@ public class View extends JFrame {
         return panel;
     }
 
+    /**
+     * Creates the export panel with a status label and export button.
+     * The export button is initially disabled until data is loaded.
+     *
+     * @return A JPanel containing the export controls.
+     */
     private JPanel createExportPanel() {
         JPanel panel = new JPanel(new BorderLayout(10, 5));
 
@@ -686,16 +705,41 @@ public class View extends JFrame {
     }
 
     private static class CleanRoundedBorder implements Border {
+        /**
+         * Custom border with rounded corners for a clean appearance.
+         * This border can be used for text fields, buttons, etc.
+         * It allows for left and right rounding to create a connected appearance.
+         */
+        // Radius for the rounded corners
         private final int radius;
+        // Flags to determine if left or right corners should be rounded
         private final boolean leftRounded;
         private final boolean rightRounded;
 
+        /**
+         * Constructor for CleanRoundedBorder.
+         *
+         * @param radius       The radius of the rounded corners.
+         * @param leftRounded  If true, the left corners will be rounded.
+         * @param rightRounded If true, the right corners will be rounded.
+         */
         public CleanRoundedBorder(int radius, boolean leftRounded, boolean rightRounded) {
             this.radius = radius;
             this.leftRounded = leftRounded;
             this.rightRounded = rightRounded;
         }
 
+        /**
+         * Paints the border around the component.
+         * This method creates a rounded rectangle shape based on the specified radius and whether corners are rounded.
+         *
+         * @param c      The component for which this border is being painted.
+         * @param g      The graphics context in which to paint.
+         * @param x      The x-coordinate of the top-left corner of the border.
+         * @param y      The y-coordinate of the top-left corner of the border.
+         * @param width  The width of the border area.
+         * @param height The height of the border area.
+         */
         @Override
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             Graphics2D g2d = (Graphics2D) g.create();
@@ -720,11 +764,24 @@ public class View extends JFrame {
             g2d.dispose();
         }
 
+        /**
+         * Returns the insets of the border.
+         * This method provides the space that the border occupies around the component.
+         *
+         * @param c The component for which this border insets are being requested.
+         * @return Insets object representing the border insets.
+         */
         @Override
         public Insets getBorderInsets(Component c) {
             return new Insets(2, 4, 2, 4);
         }
 
+        /**
+         * Checks if the border is opaque.
+         * This method indicates whether the border should be painted as opaque.
+         *
+         * @return true if the border is opaque, false otherwise.
+         */
         @Override
         public boolean isBorderOpaque() {
             return false;
