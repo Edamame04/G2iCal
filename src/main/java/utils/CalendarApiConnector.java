@@ -179,14 +179,15 @@ public class CalendarApiConnector {
         // Parse the client secrets from JSON
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
-        // Get client ID from the loaded secrets
+        // Get values from the loaded secrets
         String clientId = clientSecrets.getDetails().getClientId();
+        String authUri = clientSecrets.getDetails().getAuthUri(); // Use auth_uri from credentials
+        String redirectUri = clientSecrets.getDetails().getRedirectUris().get(0); // Use redirect_uris from credentials
 
-        // Build the authorization URL with the same parameters as the OAuth flow
+        // Build the authorization URL using the auth_uri from credentials
         String scope = String.join("%20", SCOPES); // URL encode space as %20
-        String redirectUri = "http://localhost:8888/Callback";
 
-        return "https://accounts.google.com/o/oauth2/auth" +
+        return authUri +
                 "?access_type=offline" +
                 "&client_id=" + clientId +
                 "&redirect_uri=" + redirectUri +
