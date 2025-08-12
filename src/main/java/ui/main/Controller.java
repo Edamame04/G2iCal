@@ -157,7 +157,7 @@ public class Controller {
             Object[][] eventData = convertEventsToTableData(events);
 
             // Update the view with loaded events
-            view.updateEventTable(eventData);
+            //view.updateEventTable(eventData);
             view.setStatusMessage("Loaded " + events.getItems().size() + " events successfully");
             view.setExportButtonEnabled(true);
 

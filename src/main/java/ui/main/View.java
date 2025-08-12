@@ -11,6 +11,7 @@ import calendar.CalendarEvent;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -54,7 +55,7 @@ public class View extends JFrame {
         // Program name and basic settings for the JFrame
         setTitle("G2iCal");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(600, 400)); // Set minimum size for responsiveness
+        setMinimumSize(new Dimension(480, 300)); // Set minimum size for responsiveness
         setPreferredSize(new Dimension(900, 700)); // default size
         setLocationRelativeTo(null);
 
@@ -179,81 +180,109 @@ public class View extends JFrame {
     }
 
     private JPanel createFormPanel() {
-        JPanel formPanel = new JPanel();
-        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
+        JPanel formPanel = new JPanel(new GridBagLayout());
+        formPanel.setBorder(BorderFactory.createEmptyBorder(3, 0, 10, 0));
 
-        // Calendar selection row
-        JPanel calendarPanel = createCalendarSelectionPanel();
-        formPanel.add(calendarPanel);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.anchor = GridBagConstraints.WEST;
 
-        // Date range and load button row
-        JPanel datePanel = createDateRangePanel();
-        formPanel.add(datePanel);
+
+        // Form label
+        gbc.gridx = 0; gbc.gridy = 0;
+        gbc.gridwidth = 5;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 0;
+        JLabel calendarLabel = new JLabel("Select a calendar and date range for the export:");
+        formPanel.add(calendarLabel, gbc);
+
+
+        // Calendar dropdown
+        gbc.gridx = 0; gbc.gridy = 1;
+        gbc.gridwidth = 5;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 1.0;
+        calendarDropdown = new JComboBox<>();
+        calendarDropdown.setSize(new Dimension(400, 35));
+        formPanel.add(calendarDropdown, gbc);
+        // Date range controls
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 0;
+
+        gbc.gridx = 0;
+        JLabel fromLabel = new JLabel("Start:");
+        formPanel.add(fromLabel, gbc);
+
+        gbc.gridx = 1;
+        startDateChooser = createStyledDateChooser();
+        formPanel.add(startDateChooser, gbc);
+
+        gbc.gridx = 2;
+        JLabel toLabel = new JLabel("End:");
+        formPanel.add(toLabel, gbc);
+
+        gbc.gridx = 3;
+        endDateChooser = createStyledDateChooser();
+        formPanel.add(endDateChooser, gbc);
+
+        // Load Data button
+        gbc.gridx = 4;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 1.0;
+        loadDataButton = new JButton("Load Data");
+        loadDataButton.setBackground(LIGHT_BLUE);
+        loadDataButton.setSize(new Dimension(100, 35));
+        loadDataButton.addActionListener(new LoadDataActionListener());
+        formPanel.add(loadDataButton, gbc);
+
+        // Set default dates (from 30 days ago to today)
+        Calendar cal = Calendar.getInstance();
+        endDateChooser.setDate(cal.getTime());
+        cal.add(Calendar.DAY_OF_MONTH, -30);
+        startDateChooser.setDate(cal.getTime());
 
         return formPanel;
     }
 
-    private JPanel createCalendarSelectionPanel() {
-        JPanel panel = new JPanel(new BorderLayout(5, 5));
+    private JDateChooser createStyledDateChooser() {
+        JDateChooser dateChooser = new JDateChooser();
+        dateChooser.setDateFormatString("yyyy-MM-dd");
+        dateChooser.setPreferredSize(new Dimension(120, 25));
 
-        JLabel calendarLabel = new JLabel("Choose a calendar to export:");
-        calendarDropdown = new JComboBox<>();
+        // Style the date chooser to have connected appearance with clean rounded corners
+        SwingUtilities.invokeLater(() -> {
+            // Get the text field component
+            JTextField textField = ((JTextField) dateChooser.getDateEditor().getUiComponent());
 
-        calendarDropdown.setSize(new Dimension(380, 25));
+            // Find the calendar button by iterating through components
+            JButton calendarButton = null;
+            for (Component comp : dateChooser.getComponents()) {
+                if (comp instanceof JButton) {
+                    calendarButton = (JButton) comp;
+                    break;
+                }
+            }
 
-        panel.add(calendarLabel, BorderLayout.WEST);
-        panel.add(Box.createHorizontalStrut(10), BorderLayout.CENTER);
-        panel.add(calendarDropdown, BorderLayout.EAST);
+            if (calendarButton != null) {
+                // Create clean rounded borders like the Load Data button
+                textField.setBorder(new CleanRoundedBorder(8, true, false)); // Left side rounded
+                calendarButton.setBorder(new CleanRoundedBorder(8, false, true)); // Right side rounded
 
-        return panel;
-    }
+                // Style the button to match
+                calendarButton.setContentAreaFilled(false);
+                calendarButton.setFocusPainted(false);
+                calendarButton.setOpaque(true);
+                calendarButton.setBackground(Color.WHITE);
 
-    private JPanel createDateRangePanel() {
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 0, 5, 0);
-        gbc.anchor = GridBagConstraints.WEST;
+                // Style the text field
+                textField.setOpaque(true);
+                textField.setBackground(Color.WHITE);
+            }
+        });
 
-        // From date picker
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        JLabel fromLabel = new JLabel("From:");
-        panel.add(fromLabel, gbc);
-
-        gbc.gridx = 1;
-        startDateChooser = new JDateChooser();
-        startDateChooser.setDateFormatString("yyyy-MM-dd");
-        startDateChooser.setSize(new Dimension(120, 25));
-        panel.add(startDateChooser, gbc);
-
-        // To date picker
-        gbc.gridx = 2;
-        JLabel toLabel = new JLabel("To:");
-        panel.add(toLabel, gbc);
-
-        gbc.gridx = 3;
-        endDateChooser = new JDateChooser();
-        endDateChooser.setDateFormatString("yyyy-MM-dd");
-        endDateChooser.setSize(new Dimension(120, 25));
-        panel.add(endDateChooser, gbc);
-
-        // Set default dates (from 30 days ago to today)
-        Calendar cal = Calendar.getInstance();
-        endDateChooser.setDate(cal.getTime()); // Today
-        cal.add(Calendar.DAY_OF_MONTH, -30);
-        startDateChooser.setDate(cal.getTime()); // 30 days ago
-
-        // Load Data button with flexible positioning
-        gbc.gridx = 4;
-        gbc.weightx = 1.0; // Allow button to push to the right
-        gbc.anchor = GridBagConstraints.EAST;
-        loadDataButton = new JButton("Load Data");
-        loadDataButton.setBackground(LIGHT_BLUE);
-        loadDataButton.setSize(new Dimension(120, 25));
-        loadDataButton.addActionListener(new LoadDataActionListener());
-        panel.add(loadDataButton, gbc);
-
-        return panel;
+        return dateChooser;
     }
 
     private JPanel createEventTablePanel() {
@@ -453,8 +482,6 @@ public class View extends JFrame {
         saveMenuItem.setEnabled(enabled);
     }
 
-
-
     /* Dialogs */
 
     /**
@@ -601,5 +628,51 @@ public class View extends JFrame {
      */
     void showErrorDialog(String message) {
         JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private static class CleanRoundedBorder implements Border {
+        private final int radius;
+        private final boolean leftRounded;
+        private final boolean rightRounded;
+
+        public CleanRoundedBorder(int radius, boolean leftRounded, boolean rightRounded) {
+            this.radius = radius;
+            this.leftRounded = leftRounded;
+            this.rightRounded = rightRounded;
+        }
+
+        @Override
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            Graphics2D g2d = (Graphics2D) g.create();
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2d.setColor(new Color(160, 160, 160)); // Light gray border
+            g2d.setStroke(new BasicStroke(1.0f));
+
+            // Create the shape
+            Shape shape;
+            if (leftRounded && !rightRounded) {
+                // Left rounded, right straight
+                shape = new java.awt.geom.RoundRectangle2D.Float(x, y, width + radius, height - 1, radius, radius);
+            } else if (!leftRounded && rightRounded) {
+                // Right rounded, left straight
+                shape = new java.awt.geom.RoundRectangle2D.Float(x - radius, y, width + radius, height - 1, radius, radius);
+            } else {
+                // Fully rounded
+                shape = new java.awt.geom.RoundRectangle2D.Float(x, y, width - 1, height - 1, radius, radius);
+            }
+
+            g2d.draw(shape);
+            g2d.dispose();
+        }
+
+        @Override
+        public Insets getBorderInsets(Component c) {
+            return new Insets(2, 4, 2, 4);
+        }
+
+        @Override
+        public boolean isBorderOpaque() {
+            return false;
+        }
     }
 }
