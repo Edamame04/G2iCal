@@ -557,6 +557,12 @@ public class View extends JFrame {
         gbc.weightx = 1.0;
         JTextField fileNameField = new JTextField(fileName, 20);
         fileNameField.setBorder(new CleanRoundedBorder(12, true, true));
+
+        // Set same height constraints as locationField
+        fileNameField.setPreferredSize(new Dimension(300, 28));
+        fileNameField.setMinimumSize(new Dimension(200, 28));
+        fileNameField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 28));
+
         formPanel.add(fileNameField, gbc);
 
         // Export file path
@@ -569,11 +575,25 @@ public class View extends JFrame {
         gbc.gridx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 1.0;
-        JPanel locationPanel = new JPanel(new BorderLayout(5, 0));
+
+        // Use Box layout instead of BorderLayout to better control sizing
+        JPanel locationPanel = new JPanel();
+        locationPanel.setLayout(new BoxLayout(locationPanel, BoxLayout.X_AXIS));
+
         JTextField locationField = new JTextField(filePath, 20);
         locationField.setEditable(true);
-        locationField.setBorder(new CleanRoundedBorder(12, true, true));
+        locationField.setBorder(new CleanRoundedBorder(12, true, false));
+
+        // Force exact height control
+        locationField.setPreferredSize(new Dimension(300, 28));
+        locationField.setMinimumSize(new Dimension(200, 28));
+        locationField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 28));
+
         JButton browseButton = new JButton("Browse...");
+        browseButton.setBorder(new CleanRoundedBorder(12, false, true));
+        browseButton.setPreferredSize(new Dimension(90, 28));
+        browseButton.setMinimumSize(new Dimension(90, 28));
+        browseButton.setMaximumSize(new Dimension(90, 28));
 
         browseButton.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
@@ -586,8 +606,14 @@ public class View extends JFrame {
             }
         });
 
-        locationPanel.add(locationField, BorderLayout.CENTER);
-        locationPanel.add(browseButton, BorderLayout.EAST);
+        // Add components with proper spacing
+        locationPanel.add(locationField);
+        locationPanel.add(Box.createHorizontalStrut(0)); // No gap between components for connected appearance
+        locationPanel.add(browseButton);
+
+        // Ensure the panel itself has fixed height
+        locationPanel.setPreferredSize(new Dimension(400, 28));
+        locationPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 28));
         formPanel.add(locationPanel, gbc);
 
         // Button panel
