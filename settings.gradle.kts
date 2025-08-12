@@ -1,1 +1,1 @@
-rootProject.name = "google_calendar_iCal"
+rootProject.name = "G2iCal"

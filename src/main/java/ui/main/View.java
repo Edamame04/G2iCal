@@ -9,7 +9,6 @@
 
 package ui.main;
 
-import calendar.CalendarEvent;
 import com.toedter.calendar.JDateChooser;
 import utils.InputValidator;
 
