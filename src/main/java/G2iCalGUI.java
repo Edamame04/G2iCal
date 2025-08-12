@@ -1,9 +1,8 @@
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import utils.CalendarApiConnector;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 public class G2iCalGUI {
     public static void main(String[] args) {

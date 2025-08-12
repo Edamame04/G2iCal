@@ -2,16 +2,13 @@ package ui.main;
 
 import calendar.CalendarEvent;
 import calendar.ICal;
-import calendar.MyEvent;
+import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.model.CalendarListEntry;
 import com.google.api.services.calendar.model.Events;
 import utils.CalendarApiConnector;
 import utils.EventFactory;
-import utils.Settings;
-
-import com.google.api.client.util.DateTime;
-import com.google.api.services.calendar.model.Events;
 import utils.InputValidator;
+import utils.Settings;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;

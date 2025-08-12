@@ -8,9 +8,9 @@ package ui.start;
 
 import utils.CalendarApiConnector;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import javax.swing.*;
 
 public class Controller {
     private final View view; // The view for the start screen

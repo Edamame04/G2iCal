@@ -6,16 +6,16 @@
 
 package calendar;
 
-import utils.EventFactory;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.Events;
 import exceptions.ICalExportException;
+import utils.EventFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The calendar.ICal class provides functionality to store calendar events and export them in iCalendar (iCal) format.

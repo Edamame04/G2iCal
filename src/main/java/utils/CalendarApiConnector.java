@@ -27,7 +27,6 @@ import com.google.api.services.calendar.model.CalendarList;
 import com.google.api.services.calendar.model.CalendarListEntry;
 import com.google.api.services.calendar.model.Events;
 
-// Imports for handling exceptions and I/O operations
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;

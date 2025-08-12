@@ -7,17 +7,17 @@
 
 package ui.main;
 
+import calendar.CalendarEvent;
+import com.toedter.calendar.JDateChooser;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
-import java.util.Calendar;
 import java.text.SimpleDateFormat;
-
-import calendar.CalendarEvent;
-import com.toedter.calendar.JDateChooser;
+import java.util.Calendar;
+import java.util.Date;
 
 public class View extends JFrame {
     private final Controller controller; // Reference to the controller

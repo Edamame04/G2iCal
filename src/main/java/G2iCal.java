@@ -2,9 +2,9 @@ import calendar.ICal;
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.model.CalendarListEntry;
 import com.google.api.services.calendar.model.Events;
+import exceptions.ICalExportException;
 import utils.CalendarApiConnector;
 import utils.InputValidator;
-import exceptions.ICalExportException;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
