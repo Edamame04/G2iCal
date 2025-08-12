@@ -571,7 +571,7 @@ public class View extends JFrame {
         gbc.weightx = 1.0;
         JPanel locationPanel = new JPanel(new BorderLayout(5, 0));
         JTextField locationField = new JTextField(filePath, 20);
-        locationField.setEditable(false);
+        locationField.setEditable(true);
         locationField.setBorder(new CleanRoundedBorder(12, true, true));
         JButton browseButton = new JButton("Browse...");
 
