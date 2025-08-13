@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Safari/605.1.15" version="28.0.7">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Safari/605.1.15" version="28.0.7" pages="2">
   <diagram id="P4yRx54tCu4BhojKKeX_" name="Page-1">
     <mxGraphModel dx="4593" dy="413" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
@@ -115,6 +115,384 @@
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <Array as="points" />
           </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="bFi-LHFBYqEngfsjETGd" name="Page-2">
+    <mxGraphModel dx="9130" dy="1775" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="XQulpbrSLtejIXviJmFK-86" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;CalendarApiConnector&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- CalendarApiConnector(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- APPLICATION_NAME: String&lt;br/&gt;- TOKENS_DIRECTORY_PATH: String&lt;br/&gt;- CREDENTIALS_FILE_PATH: String&lt;br/&gt;- httpTransport: NetHttpTransport&lt;br/&gt;- calendarService: Calendar&lt;br/&gt;- SCOPES: List&amp;lt;String&amp;gt;&lt;br/&gt;- JSON_FACTORY: JsonFactory&lt;br/&gt;- instance: CalendarApiConnector&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getLoginUrl(): String&lt;br/&gt;+ isAuthenticated(): boolean&lt;br/&gt;+ logout(): void&lt;br/&gt;- initializeService(): void&lt;br/&gt;- getCredentials(): Credential&lt;br/&gt;+ getAllCalendarsEvents(DateTime, DateTime): Events&lt;br/&gt;+ getCalendarEventsByCalendarId(String, DateTime, DateTime): Events&lt;br/&gt;+ getPrimaryCalendarEvents(DateTime, DateTime): Events&lt;br/&gt;+ getUserCalendars(): List&amp;lt;CalendarListEntry&amp;gt;&lt;br/&gt;+ getInstance(): CalendarApiConnector&lt;br/&gt;+ clearCredentials(): void&lt;br/&gt;+ getUser(): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-800" y="4677" width="474" height="545" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-87" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;CalendarEvent&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getCreated(): LocalDateTime&lt;br/&gt;+ getStatus(): String&lt;br/&gt;+ getAttendees(): List&amp;lt;String&amp;gt;&lt;br/&gt;+ getContact(): String&lt;br/&gt;+ toICal(): String&lt;br/&gt;+ getOrganizer(): String&lt;br/&gt;+ getRecurrenceDates(): List&amp;lt;LocalDateTime&amp;gt;&lt;br/&gt;+ getDescription(): String&lt;br/&gt;+ getLocation(): String&lt;br/&gt;+ getPriority(): Integer&lt;br/&gt;+ getSummary(): String&lt;br/&gt;+ getExceptionDates(): List&amp;lt;LocalDateTime&amp;gt;&lt;br/&gt;+ getLastModified(): LocalDateTime&lt;br/&gt;+ getAlarmMinutesBefore(): Integer&lt;br/&gt;+ getTransparency(): String&lt;br/&gt;+ getClassification(): String&lt;br/&gt;+ getUrl(): String&lt;br/&gt;+ getCategories(): List&amp;lt;String&amp;gt;&lt;br/&gt;+ getComment(): String&lt;br/&gt;+ getRecurrenceRule(): String&lt;br/&gt;+ getEnd(): LocalDateTime&lt;br/&gt;+ getStart(): LocalDateTime&lt;br/&gt;+ getUid(): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-1290" y="3372" width="321" height="591" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-88" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;CleanRoundedBorder&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ CleanRoundedBorder(int, boolean, boolean): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- radius: int&lt;br/&gt;- leftRounded: boolean&lt;br/&gt;- rightRounded: boolean&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ paintBorder(Component, Graphics, int, int, int, int): void&lt;br/&gt;+ getBorderInsets(Component): Insets&lt;br/&gt;+ isBorderOpaque(): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="264" y="5057" width="385" height="209" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-89" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Controller&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- Controller(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- view: View&lt;br/&gt;- instance: Controller&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ startLoginProcess(): void&lt;br/&gt;+ getInstance(): Controller&lt;br/&gt;- hideView(): void&lt;br/&gt;+ showView(): void&lt;br/&gt;+ clearCache(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-161" y="3923" width="204" height="242" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-90" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Controller&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Controller(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- settings: Settings&lt;br/&gt;- iCal: ICal&lt;br/&gt;- view: View&lt;br/&gt;- calendarApiConnector: CalendarApiConnector&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ reset(): void&lt;br/&gt;+ exportEvents(): void&lt;br/&gt;- closeView(): void&lt;br/&gt;~ exitToStartScreen(): void&lt;br/&gt;~ getFilePath(): String&lt;br/&gt;~ updateSettings(String, String): void&lt;br/&gt;~ getUserName(): String&lt;br/&gt;~ loadInitialData(): void&lt;br/&gt;+ logout(): void&lt;br/&gt;+ loadCalendarEvents(String, String, String): void&lt;br/&gt;~ getFileName(): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-194" y="4433" width="337" height="425" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-91" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;EventConverter&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ EventConverter(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- convertResponseStatus(String): String&lt;br/&gt;- getAttendees(Event): List&amp;lt;String&amp;gt;&lt;br/&gt;- convertEventDateTime(EventDateTime): LocalDateTime&lt;br/&gt;+ convert(Event): CalendarEvent&lt;br/&gt;- convertStatus(String): String&lt;br/&gt;- convertDateTime(DateTime): LocalDateTime&lt;br/&gt;- convertVisibility(String): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-1803" y="3536" width="391" height="232" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-92" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;EventFactory&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ EventFactory(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ createFromData(String, String, String, String, LocalDateTime, LocalDateTime, String, List&amp;lt;String&amp;gt;): CalendarEvent&lt;br/&gt;+ createSimple(String, LocalDateTime, LocalDateTime): CalendarEvent&lt;br/&gt;+ builder(): MyEventBuilder&lt;br/&gt;+ createFromGoogle(Event): CalendarEvent&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-1803" y="3842" width="469" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-93" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ExportActionListener&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ ExportActionListener(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ actionPerformed(ActionEvent): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="264" y="5482" width="267" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-94" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;G2iCal&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ G2iCal(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;~ EXPORT_FILE_PATH: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ main(String[]): void&lt;br/&gt;- getUserInputEndDate(DateTime, String[]): DateTime&lt;br/&gt;- getUserInputFileName(String[]): String&lt;br/&gt;- getUserInputStartDate(String[]): DateTime&lt;br/&gt;- promptForValidInput(Scanner, String, Function&amp;lt;String, ValidationResult&amp;gt;): String&lt;br/&gt;- displayInfoIfPorted(String[]): void&lt;br/&gt;- displayCalendarList(List&amp;lt;CalendarListEntry&amp;gt;): void&lt;br/&gt;- getUserInputCalendar(String[]): String&lt;br/&gt;- displayWelcomeMessage(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-1138" y="2780" width="450" height="305" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-95" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;G2iCalGUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ G2iCalGUI(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ main(String[]): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="409" y="3639" width="166" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-96" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ICal&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ ICal(): &lt;br/&gt;+ ICal(Events): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- events: List&amp;lt;CalendarEvent&amp;gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- foldLines(String): String&lt;br/&gt;+ getICalString(): String&lt;br/&gt;+ addGoogleEvent(Event): void&lt;br/&gt;+ toTableModel(): Object[][]&lt;br/&gt;+ exportICalToFile(String, String): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-809" y="3459" width="270" height="233" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-97" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ICalExportException&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ ICalExportException(String, Throwable): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-822" y="3792" width="296" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-98" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;InputValidator&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ InputValidator(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- DATE_FORMATTER: DateTimeFormatter&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ validateCalendarIndex(String, List&amp;lt;CalendarListEntry&amp;gt;): ValidationResult&lt;br/&gt;+ validateFilePath(String): ValidationResult&lt;br/&gt;+ validateDate(String, String): ValidationResult&lt;br/&gt;+ validateDateRange(DateTime, String): ValidationResult&lt;br/&gt;+ normalizeFileName(String): String&lt;br/&gt;+ convertToDateTime(String, boolean): DateTime&lt;br/&gt;+ validateFileName(String): ValidationResult&lt;br/&gt;+ findCalendarByName(String, List&amp;lt;CalendarListEntry&amp;gt;): CalendarListEntry&lt;br/&gt;+ getCalendarIdByIndex(int, List&amp;lt;CalendarListEntry&amp;gt;): String?&lt;br/&gt;+ validateCalendarName(String, List&amp;lt;CalendarListEntry&amp;gt;): ValidationResult&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-811" y="4256" width="495" height="329" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-99" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;LoadDataActionListener&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ LoadDataActionListener(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ actionPerformed(ActionEvent): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="264" y="5330" width="267" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-100" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;MyEvent&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ MyEvent(): &lt;br/&gt;~ MyEvent(MyEventBuilder): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- end: LocalDateTime&lt;br/&gt;- lastModified: LocalDateTime&lt;br/&gt;- priority: Integer&lt;br/&gt;- transparency: String&lt;br/&gt;- start: LocalDateTime&lt;br/&gt;- exceptionDates: List&amp;lt;LocalDateTime&amp;gt;&lt;br/&gt;- created: LocalDateTime&lt;br/&gt;- organizer: String&lt;br/&gt;- classification: String&lt;br/&gt;- comment: String&lt;br/&gt;- uid: String&lt;br/&gt;- attendees: List&amp;lt;String&amp;gt;&lt;br/&gt;- recurrenceRule: String&lt;br/&gt;- alarmMinutesBefore: Integer&lt;br/&gt;- categories: List&amp;lt;String&amp;gt;&lt;br/&gt;- recurrenceDates: List&amp;lt;LocalDateTime&amp;gt;&lt;br/&gt;- location: String&lt;br/&gt;- status: String&lt;br/&gt;- summary: String&lt;br/&gt;- description: String&lt;br/&gt;- url: String&lt;br/&gt;- contact: String&lt;br/&gt;- ICAL_DATE_FORMAT: DateTimeFormatter&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- escapeText(String): String&lt;br/&gt;+ getExceptionDates(): List&amp;lt;LocalDateTime&amp;gt;&lt;br/&gt;+ getUid(): String&lt;br/&gt;+ getAttendees(): List&amp;lt;String&amp;gt;&lt;br/&gt;+ getContact(): String&lt;br/&gt;+ getCreated(): LocalDateTime&lt;br/&gt;+ getPriority(): Integer&lt;br/&gt;+ getLocation(): String&lt;br/&gt;+ getCategories(): List&amp;lt;String&amp;gt;&lt;br/&gt;+ getSummary(): String&lt;br/&gt;+ toICal(): String&lt;br/&gt;+ getClassification(): String&lt;br/&gt;+ setDescription(String): void&lt;br/&gt;- updateLastModified(): void&lt;br/&gt;+ getStatus(): String&lt;br/&gt;+ getEnd(): LocalDateTime&lt;br/&gt;+ getTransparency(): String&lt;br/&gt;+ getOrganizer(): String&lt;br/&gt;+ setSummary(String): void&lt;br/&gt;+ getDescription(): String&lt;br/&gt;+ setStart(LocalDateTime): void&lt;br/&gt;+ getRecurrenceDates(): List&amp;lt;LocalDateTime&amp;gt;&lt;br/&gt;+ getComment(): String&lt;br/&gt;+ getRecurrenceRule(): String&lt;br/&gt;+ setEnd(LocalDateTime): void&lt;br/&gt;+ getLastModified(): LocalDateTime&lt;br/&gt;+ setLocation(String): void&lt;br/&gt;+ getStart(): LocalDateTime&lt;br/&gt;+ getUrl(): String&lt;br/&gt;+ getAlarmMinutesBefore(): Integer&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-1290" y="4075" width="321" height="1361" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-101" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;MyEventBuilder&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ MyEventBuilder(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;~ description: String&lt;br/&gt;~ recurrenceRule: String&lt;br/&gt;~ comment: String&lt;br/&gt;~ uid: String&lt;br/&gt;~ classification: String&lt;br/&gt;~ location: String&lt;br/&gt;~ exceptionDates: List&amp;lt;LocalDateTime&amp;gt;&lt;br/&gt;~ lastModified: LocalDateTime&lt;br/&gt;~ contact: String&lt;br/&gt;~ recurrenceDates: List&amp;lt;LocalDateTime&amp;gt;&lt;br/&gt;~ url: String&lt;br/&gt;~ end: LocalDateTime&lt;br/&gt;~ start: LocalDateTime&lt;br/&gt;~ alarmMinutesBefore: Integer&lt;br/&gt;~ attendees: List&amp;lt;String&amp;gt;&lt;br/&gt;~ transparency: String&lt;br/&gt;~ summary: String&lt;br/&gt;~ categories: List&amp;lt;String&amp;gt;&lt;br/&gt;~ priority: Integer&lt;br/&gt;~ status: String&lt;br/&gt;~ organizer: String&lt;br/&gt;~ created: LocalDateTime&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ addAttendee(String): MyEventBuilder&lt;br/&gt;+ setPriorityLow(): MyEventBuilder&lt;br/&gt;+ setClassificationConfidential(): MyEventBuilder&lt;br/&gt;+ setAlarm15MinutesBefore(): MyEventBuilder&lt;br/&gt;+ setStatusCancelled(): MyEventBuilder&lt;br/&gt;+ setLastModified(LocalDateTime): MyEventBuilder&lt;br/&gt;+ setAlarmMinutesBefore(Integer): MyEventBuilder&lt;br/&gt;+ setTransparency(String): MyEventBuilder&lt;br/&gt;+ setPriority(Integer): MyEventBuilder&lt;br/&gt;+ setRecurrenceDates(List&amp;lt;LocalDateTime&amp;gt;): MyEventBuilder&lt;br/&gt;+ setExceptionDates(List&amp;lt;LocalDateTime&amp;gt;): MyEventBuilder&lt;br/&gt;+ setStatusTentative(): MyEventBuilder&lt;br/&gt;+ setContact(String): MyEventBuilder&lt;br/&gt;+ setAlarm1HourBefore(): MyEventBuilder&lt;br/&gt;+ setComment(String): MyEventBuilder&lt;br/&gt;+ setClassificationPrivate(): MyEventBuilder&lt;br/&gt;+ setStart(LocalDateTime): MyEventBuilder&lt;br/&gt;+ setEnd(LocalDateTime): MyEventBuilder&lt;br/&gt;+ setAlarm1DayBefore(): MyEventBuilder&lt;br/&gt;+ setTransparencyOpaque(): MyEventBuilder&lt;br/&gt;+ setClassificationPublic(): MyEventBuilder&lt;br/&gt;+ addExceptionDate(LocalDateTime): MyEventBuilder&lt;br/&gt;+ addRecurrenceDate(LocalDateTime): MyEventBuilder&lt;br/&gt;+ setUrl(String): MyEventBuilder&lt;br/&gt;+ setAlarm30MinutesBefore(): MyEventBuilder&lt;br/&gt;+ build(): MyEvent&lt;br/&gt;+ setAttendees(List&amp;lt;String&amp;gt;): MyEventBuilder&lt;br/&gt;+ addCategory(String): MyEventBuilder&lt;br/&gt;+ setTransparencyTransparent(): MyEventBuilder&lt;br/&gt;+ setPriorityNormal(): MyEventBuilder&lt;br/&gt;+ setClassification(String): MyEventBuilder&lt;br/&gt;+ setRecurrenceRule(String): MyEventBuilder&lt;br/&gt;+ setLocation(String): MyEventBuilder&lt;br/&gt;+ setCategories(List&amp;lt;String&amp;gt;): MyEventBuilder&lt;br/&gt;+ setStatus(String): MyEventBuilder&lt;br/&gt;+ setOrganizer(String): MyEventBuilder&lt;br/&gt;+ setDescription(String): MyEventBuilder&lt;br/&gt;+ setUid(String): MyEventBuilder&lt;br/&gt;+ setStatusConfirmed(): MyEventBuilder&lt;br/&gt;+ setSummary(String): MyEventBuilder&lt;br/&gt;+ setPriorityHigh(): MyEventBuilder&lt;br/&gt;+ setCreated(LocalDateTime): MyEventBuilder&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-1803" y="4032" width="416" height="1601" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-102" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Settings&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- Settings(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- instance: Settings&lt;br/&gt;- gson: Gson&lt;br/&gt;- SETTINGS_FILE_NAME: String&lt;br/&gt;- DEFAULT_FILE_NAME: String&lt;br/&gt;- fileName: String&lt;br/&gt;- DEFAULT_FILE_PATH: String&lt;br/&gt;- filePath: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- loadSettings(): Settings&lt;br/&gt;+ getInstance(): Settings&lt;br/&gt;+ resetToDefaults(): void&lt;br/&gt;+ getFullExportPath(): String&lt;br/&gt;+ getFileName(): String&lt;br/&gt;+ saveSettings(): void&lt;br/&gt;- getSettingsFilePath(): Path&lt;br/&gt;+ getFilePath(): String&lt;br/&gt;+ updateSettings(String, String): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-695" y="5383" width="264" height="449" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-103" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ValidationResult&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ ValidationResult(boolean, String): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- valid: boolean&lt;br/&gt;- errorMessage: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ isValid(): boolean&lt;br/&gt;+ getErrorMessage(): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-690" y="4004" width="254" height="161" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-104" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;View&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;~ View(Controller): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- saveMenuItem: JMenuItem&lt;br/&gt;- calendarDropdown: JComboBox&amp;lt;String&amp;gt;&lt;br/&gt;- endDateChooser: JDateChooser&lt;br/&gt;- startDateChooser: JDateChooser&lt;br/&gt;- controller: Controller&lt;br/&gt;- tableModel: DefaultTableModel&lt;br/&gt;- exportButton: JButton&lt;br/&gt;- LIGHT_BLUE: Color&lt;br/&gt;- statusLabel: JLabel&lt;br/&gt;- loadDataButton: JButton&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- createEventTablePanel(): JPanel&lt;br/&gt;+ updateEventTable(Object[][]): void&lt;br/&gt;- initializeUI(): void&lt;br/&gt;~ reset(): void&lt;br/&gt;- createMenuBar(): void&lt;br/&gt;+ updateCalendarList(String[], String[]): void&lt;br/&gt;- createFormPanel(): JPanel&lt;br/&gt;- showAboutDialog(): void&lt;br/&gt;- createExportPanel(): JPanel&lt;br/&gt;- showSettingsDialog(): void&lt;br/&gt;+ setStatusMessage(String): void&lt;br/&gt;+ setExportButtonEnabled(boolean): void&lt;br/&gt;- createMainContent(): void&lt;br/&gt;- createStyledDateChooser(): JDateChooser&lt;br/&gt;~ showErrorDialog(String): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="264" y="4328" width="311" height="665" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-105" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;View&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;~ View(Controller): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- controller: Controller&lt;br/&gt;- clearCacheLabel: JLabel&lt;br/&gt;- loginDialog: JDialog&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;~ showClearCacheSuccess(): void&lt;br/&gt;~ showErrorDialog(String): void&lt;br/&gt;- initializeUI(): void&lt;br/&gt;- getJLabel(String): JLabel&lt;br/&gt;~ showLoginPrompt(String): void&lt;br/&gt;~ getLoginDialog(): JDialog&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="3923" width="246" height="281" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-106" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=circlePlus;startFill=0;endArrow=none;strokeColor=#820000;exitX=1.000;exitY=0.647;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-88" target="XQulpbrSLtejIXviJmFK-104">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="667" y="5192" />
+              <mxPoint x="667" y="4660" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-107" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.000;exitY=0.591;exitDx=0;exitDy=0;entryX=1.000;entryY=0.014;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-90" target="XQulpbrSLtejIXviJmFK-86">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-108" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-107">
+          <mxGeometry x="-314" y="4686" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-109" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-107">
+          <mxGeometry x="-241" y="4671" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-110" value="calendarApiConnector" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-107">
+          <mxGeometry x="-385" y="4614" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-111" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.672;exitY=1.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-89" target="XQulpbrSLtejIXviJmFK-90">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-24" y="4248" />
+              <mxPoint x="-26" y="4248" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-112" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-111">
+          <mxGeometry x="-43" y="4209" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-113" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.000;exitY=0.500;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-90" target="XQulpbrSLtejIXviJmFK-96">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-253" y="4645" />
+              <mxPoint x="-253" y="3576" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-114" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-113">
+          <mxGeometry x="-459" y="3581" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-115" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-113">
+          <mxGeometry x="-243" y="3839" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-116" value="iCal" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-113">
+          <mxGeometry x="-393" y="3559" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-117" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.032;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-90" target="XQulpbrSLtejIXviJmFK-96">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-183" y="3156" />
+              <mxPoint x="-674" y="3156" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-118" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-117">
+          <mxGeometry x="-667" y="3200" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-119" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=1.000;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-90" target="XQulpbrSLtejIXviJmFK-102">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-26" y="5607" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-120" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-119">
+          <mxGeometry x="-419" y="5609" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-121" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-119">
+          <mxGeometry x="-123" y="5594" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-122" value="settings" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-119">
+          <mxGeometry x="-419" y="5579" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-123" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=1.000;exitY=0.603;exitDx=0;exitDy=0;entryX=0.000;entryY=0.500;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-89" target="XQulpbrSLtejIXviJmFK-105">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="117" y="4069" />
+              <mxPoint x="117" y="4064" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-124" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-123">
+          <mxGeometry x="175" y="4054" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-125" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-123">
+          <mxGeometry x="122" y="4046" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-126" value="view" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-123">
+          <mxGeometry x="163" y="4074" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-127" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=1.000;exitY=0.535;exitDx=0;exitDy=0;entryX=0.000;entryY=0.500;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-90" target="XQulpbrSLtejIXviJmFK-104">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="204" y="4660" />
+              <mxPoint x="204" y="4660" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-128" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-127">
+          <mxGeometry x="200" y="4630" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-129" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=1.000;exitY=0.371;exitDx=0;exitDy=0;entryX=0.000;entryY=0.308;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-89" target="XQulpbrSLtejIXviJmFK-105">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="117" y="4013" />
+              <mxPoint x="117" y="4010" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-130" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-129">
+          <mxGeometry x="102" y="3979" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-131" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=1.000;exitY=0.500;exitDx=0;exitDy=0;entryX=0.000;entryY=0.477;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-90" target="XQulpbrSLtejIXviJmFK-104">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="204" y="4645" />
+              <mxPoint x="204" y="4645" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-132" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-131">
+          <mxGeometry x="247" y="4632" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-133" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-131">
+          <mxGeometry x="214" y="4641" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-134" value="view" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-131">
+          <mxGeometry x="231" y="4650" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-135" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=1.000;exitDx=0;exitDy=0;entryX=0.000;entryY=0.500;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-91" target="XQulpbrSLtejIXviJmFK-101">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-1607" y="3805" />
+              <mxPoint x="-1820" y="3805" />
+              <mxPoint x="-1820" y="4833" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-136" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-135">
+          <mxGeometry x="-1600" y="3781" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-137" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.000;entryY=0.500;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-92" target="XQulpbrSLtejIXviJmFK-101">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-1568" y="3805" />
+              <mxPoint x="-1820" y="3805" />
+              <mxPoint x="-1820" y="4833" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-138" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-137">
+          <mxGeometry x="-1650" y="3791" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-139" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=circlePlus;startFill=0;endArrow=none;strokeColor=#820000;exitX=1.000;exitY=0.500;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-93" target="XQulpbrSLtejIXviJmFK-104">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="667" y="5526" />
+              <mxPoint x="667" y="4660" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-140" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=1.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-94" target="XQulpbrSLtejIXviJmFK-96">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-913" y="3156" />
+              <mxPoint x="-674" y="3156" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-141" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-140">
+          <mxGeometry x="-719" y="3398" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-142" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.525;exitY=1.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-95" target="XQulpbrSLtejIXviJmFK-90">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="497" y="4248" />
+              <mxPoint x="-26" y="4248" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-143" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-142">
+          <mxGeometry x="216" y="4224" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-144" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.000;exitY=0.657;exitDx=0;exitDy=0;entryX=1.000;entryY=0.406;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-96" target="XQulpbrSLtejIXviJmFK-87">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-889" y="3613" />
+              <mxPoint x="-889" y="3612" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-145" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-144">
+          <mxGeometry x="-830" y="3614" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-146" value="*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-144">
+          <mxGeometry x="-957" y="3613" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-147" value="events" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-144">
+          <mxGeometry x="-957" y="3587" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-148" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=1.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-96" target="XQulpbrSLtejIXviJmFK-97">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-149" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-148">
+          <mxGeometry x="-667" y="3738" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-150" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-98" target="XQulpbrSLtejIXviJmFK-103">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-151" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-150">
+          <mxGeometry x="-556" y="4206" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-152" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=circlePlus;startFill=0;endArrow=none;strokeColor=#820000;exitX=1.000;exitY=0.682;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-99" target="XQulpbrSLtejIXviJmFK-104">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="667" y="5390" />
+              <mxPoint x="667" y="4660" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-153" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-100" target="XQulpbrSLtejIXviJmFK-87">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-154" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=1.000;exitY=0.452;exitDx=0;exitDy=0;entryX=0.000;entryY=0.500;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-101" target="XQulpbrSLtejIXviJmFK-100">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-155" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-154">
+          <mxGeometry x="-1357" y="4725" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-156" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=circlePlus;startFill=0;endArrow=none;strokeColor=#820000;exitX=0.559;exitY=1.000;exitDx=0;exitDy=0;entryX=0.530;entryY=0.000;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-103" target="XQulpbrSLtejIXviJmFK-98">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-157" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.619;exitY=1.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-104" target="XQulpbrSLtejIXviJmFK-88">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-158" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-157">
+          <mxGeometry x="464" y="5020" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-159" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.000;exitY=0.361;exitDx=0;exitDy=0;entryX=1.000;entryY=0.436;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-105" target="XQulpbrSLtejIXviJmFK-89">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="117" y="4025" />
+              <mxPoint x="117" y="4029" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-160" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-159">
+          <mxGeometry x="127" y="4025" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-161" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-159">
+          <mxGeometry x="180" y="4015" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-162" value="controller" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-159">
+          <mxGeometry x="-336" y="4029" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-163" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.000;exitY=0.523;exitDx=0;exitDy=0;entryX=1.000;entryY=0.571;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-104" target="XQulpbrSLtejIXviJmFK-90">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="204" y="4675" />
+              <mxPoint x="204" y="4675" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-164" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-163">
+          <mxGeometry x="159" y="4662" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-165" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-163">
+          <mxGeometry x="251" y="4665" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-166" value="controller" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-163">
+          <mxGeometry x="154" y="4680" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-167" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=1.000;exitY=0.477;exitDx=0;exitDy=0;entryX=1.000;entryY=0.670;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-104" target="XQulpbrSLtejIXviJmFK-93">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="682" y="4645" />
+              <mxPoint x="682" y="5541" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-168" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-167">
+          <mxGeometry x="603" y="5563" as="geometry" />
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-169" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=1.000;exitY=0.488;exitDx=0;exitDy=0;entryX=1.006;entryY=0.349;entryDx=0;entryDy=0;" edge="1" parent="1" source="XQulpbrSLtejIXviJmFK-104" target="XQulpbrSLtejIXviJmFK-99">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="682" y="4652" />
+              <mxPoint x="682" y="5361" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XQulpbrSLtejIXviJmFK-170" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" vertex="1" connectable="0" parent="XQulpbrSLtejIXviJmFK-169">
+          <mxGeometry x="603" y="5330" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
