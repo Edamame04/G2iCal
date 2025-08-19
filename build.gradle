@@ -1,7 +1,8 @@
-apply plugin: 'java'
-apply plugin: 'application'
+plugins {
+    id 'java'
+    id 'application'
+}
 
-mainClassName = 'G2iCalGUI'
 sourceCompatibility = 11
 targetCompatibility = 11
 version = '1.0'
@@ -21,4 +22,25 @@ dependencies {
 
     // Look and Feel for Java Swing
     implementation 'com.formdev:flatlaf:3.2.5'
+}
+
+application {
+    // Standardmäßig starten wir die GUI
+    mainClass = 'G2iCalGUI'
+}
+
+// Extra-Task für CLI
+tasks.register('runCli', JavaExec) {
+    group = "application"
+    description = "Startet die CLI-Version"
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'G2iCal'
+}
+
+// Extra-Task für GUI
+tasks.register('runGui', JavaExec) {
+    group = "application"
+    description = "Startet die GUI-Version"
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'G2iCalGUI'
 }
