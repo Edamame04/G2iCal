@@ -263,9 +263,9 @@ public class G2iCal {
             System.out.println("  You can use it in both command line and interactive modes.");
             System.out.println();
             System.out.println("USAGE:");
-            System.out.println("  java G2iCal [start-date] [end-date] [filename] [calendar-index]");
-            System.out.println("  java G2iCal --info    (show this help)");
-            System.out.println("  java G2iCal           (interactive mode)");
+            System.out.println("  ./gradlew runCli --args=\"[start-date] [end-date] [filename] [calendar-index]\"");
+            System.out.println("  ./gradlew runCli --args=\"--info\"    (show this help)");
+            System.out.println("  ./gradlew runCli          (interactive mode)");
             System.out.println();
             System.out.println("ARGUMENTS:");
             System.out.println("  start-date      Start date in YYYY-MM-DD format (e.g., 2025-07-29)");
@@ -275,10 +275,10 @@ public class G2iCal {
             System.out.println("  on invalid input, the program will prompt for valid input");
             System.out.println();
             System.out.println("EXAMPLES:");
-            System.out.println("  java MainCLI 2025-07-29 2025-08-05 my_events 0");
-            System.out.println("  java MainCLI 2025-08-01 2025-08-31 work_events.ics 1");
-            System.out.println("  java MainCLI --help");
-            System.out.println("  java MainCLI    # Interactive mode - program will prompt for inputs");
+            System.out.println("  ./gradlew runCli --args=\" 2025-07-29 2025-08-05 my_events 0\"");
+            System.out.println("  ./gradlew runCli --args=\" 2025-08-01 2025-08-31 work_events.ics 1\"");
+            System.out.println("  ./gradlew runCli --args=\" --help\"");
+            System.out.println("  ./gradlew runCli    # Interactive mode - program will prompt for inputs");
             System.out.println();
             System.out.println("REQUIREMENTS:");
             System.out.println("  - Valid Google Calendar API credentials (credentials.json)");
