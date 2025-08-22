@@ -210,23 +210,38 @@ public class G2iCal {
     private static String promptForValidInput(String prompt, java.util.function.Function<String, InputValidator.ValidationResult> validator) {
         while (true) { // Loop until valid input is received or user exits
             try {
-                // Check if System.in is available
-                if (!System.in.markSupported() && System.in.available() == 0) {
-                    System.err.println("Error: No input available. Please run the program in an interactive terminal.");
-                    exit(1);
-                }
-
                 // Display the prompt and read user input
                 System.out.print(prompt);
                 System.out.flush(); // Ensure prompt is displayed immediately
 
-                // Check if scanner has next line before trying to read
-                if (!scanner.hasNextLine()) {
-                    System.err.println("Error: No input available. Please run the program in an interactive terminal.");
-                    exit(1);
+                String input = null;
+                try {
+                    input = scanner.nextLine().trim();
+                } catch (java.util.NoSuchElementException e) {
+                    // Try alternative input method for Windows compatibility
+                    System.err.println("Warning: Standard input method failed. Trying alternative approach...");
+                    try {
+                        java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
+                        input = reader.readLine();
+                        if (input == null) {
+                            System.err.println("Error: No input available. Please ensure you're running this in a terminal that supports input.");
+                            System.err.println("Try running: java -jar build/libs/G2iCal-1.0.jar");
+                            exit(1);
+                        }
+                        input = input.trim();
+                    } catch (Exception fallbackException) {
+                        System.err.println("Error: Unable to read input. Please run the program from command line:");
+                        System.err.println("Windows: java -jar build/libs/G2iCal-1.0.jar");
+                        System.err.println("Or use: ./gradlew runCli");
+                        exit(1);
+                    }
                 }
 
-                String input = scanner.nextLine().trim();
+                // Ensure input is not null before validation
+                if (input == null) {
+                    System.err.println("Error: No input received. Please try again or run with command line arguments.");
+                    continue;
+                }
 
                 // Validate the input using the provided validator function
                 InputValidator.ValidationResult result = validator.apply(input);
@@ -236,15 +251,10 @@ public class G2iCal {
                     System.out.println("Error: " + result.getErrorMessage());
                     System.out.println("Please try again.");
                 }
-            } catch (java.util.NoSuchElementException e) {
-                System.err.println("Error: Input stream closed unexpectedly. Please run the program in an interactive terminal.");
-                System.err.println("If you're using an IDE, try running from the command line instead.");
-                exit(1);
-            } catch (java.io.IOException e) {
-                System.err.println("Error: Unable to read input - " + e.getMessage());
-                exit(1);
             } catch (Exception e) {
                 System.err.println("Unexpected error while reading input: " + e.getMessage());
+                System.err.println("Please run the program from command line or try using command line arguments:");
+                System.err.println("Example: java G2iCal 2025-01-01 2025-12-31 my_calendar 0");
                 exit(1);
             }
         }
