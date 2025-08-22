@@ -74,7 +74,7 @@ public class Controller {
         try {
             return calendarApiConnector.getUser();
         } catch (IOException e) {
-            view.showErrorDialog("There was an error loading the User: " + e.getMessage());
+            if(view != null) view.showErrorDialog("There was an error loading the User: " + e.getMessage());
         }
         return "Unknown User";
     }
