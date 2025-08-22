@@ -17,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -92,8 +94,9 @@ public class View extends JFrame {
         newItem.addActionListener(e -> controller.reset());
         JMenuItem exitItem = new JMenuItem("Exit to Start Screen");
         exitItem.addActionListener(e -> controller.exitToStartScreen());
+        JMenuItem quitItem = null;
         if (!isMac) {
-            JMenuItem quitItem = new JMenuItem("Quit");
+            quitItem = new JMenuItem("Quit");
             quitItem.setAccelerator(KeyStroke.getKeyStroke("ctrl Q"));
             quitItem.addActionListener(e -> System.exit(0));
         }
@@ -102,7 +105,7 @@ public class View extends JFrame {
         fileMenu.add(newItem);
         fileMenu.addSeparator();
         fileMenu.add(exitItem);
-        if (!isMac) fileMenu.add(new JMenuItem("Quit"));
+        if (!isMac) fileMenu.add(quitItem);
 
 
         // Account menu
@@ -617,7 +620,7 @@ public class View extends JFrame {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             fileChooser.setDialogTitle("Select Export Directory");
-            fileChooser.setCurrentDirectory(new java.io.File(locationField.getText()));
+            fileChooser.setCurrentDirectory(new File(locationField.getText()));
 
             if (fileChooser.showOpenDialog(settingsDialog) == JFileChooser.APPROVE_OPTION) {
                 locationField.setText(fileChooser.getSelectedFile().getAbsolutePath());
@@ -647,7 +650,7 @@ public class View extends JFrame {
 
             if (result == JOptionPane.YES_OPTION) {
                 fileNameField.setText("calendar_export.ics");
-                locationField.setText(System.getProperty("user.home") + java.io.File.separator + "Downloads");
+                locationField.setText(System.getProperty("user.home") + File.separator + "Downloads");
             }
         });
 
@@ -670,7 +673,7 @@ public class View extends JFrame {
             }
 
             // Check if directory exists
-            java.io.File directory = new java.io.File(newFilePath);
+            File directory = new File(newFilePath);
             if (!directory.exists() || !directory.isDirectory()) {
                 JOptionPane.showMessageDialog(settingsDialog, "The specified directory does not exist or is not accessible.", "Invalid Directory", JOptionPane.WARNING_MESSAGE);
                 return;
@@ -750,13 +753,13 @@ public class View extends JFrame {
             Shape shape;
             if (leftRounded && !rightRounded) {
                 // Left rounded, right straight
-                shape = new java.awt.geom.RoundRectangle2D.Float(x, y, width + radius, height - 1, radius, radius);
+                shape = new RoundRectangle2D.Float(x, y, width + radius, height - 1, radius, radius);
             } else if (!leftRounded && rightRounded) {
                 // Right rounded, left straight - fix the width calculation
-                shape = new java.awt.geom.RoundRectangle2D.Float(x - radius, y, width + radius - 1, height - 1, radius, radius);
+                shape = new RoundRectangle2D.Float(x - radius, y, width + radius - 1, height - 1, radius, radius);
             } else {
                 // Fully rounded
-                shape = new java.awt.geom.RoundRectangle2D.Float(x, y, width - 1, height - 1, radius, radius);
+                shape = new RoundRectangle2D.Float(x, y, width - 1, height - 1, radius, radius);
             }
 
             g2d.draw(shape);
