@@ -201,7 +201,7 @@ public class G2iCal {
 
 
     /**
-     * Prompts the user for valid input with retry mechanism.
+     * Prompts the user for valid input with retry mechanism and robust error handling.
      *
      * @param prompt    the prompt message
      * @param validator the validation function
@@ -209,17 +209,43 @@ public class G2iCal {
      */
     private static String promptForValidInput(String prompt, java.util.function.Function<String, InputValidator.ValidationResult> validator) {
         while (true) { // Loop until valid input is received or user exits
-            // Display the prompt and read user input
-            System.out.print(prompt);
-            String input = scanner.nextLine().trim();
+            try {
+                // Check if System.in is available
+                if (!System.in.markSupported() && System.in.available() == 0) {
+                    System.err.println("Error: No input available. Please run the program in an interactive terminal.");
+                    exit(1);
+                }
 
-            // Validate the input using the provided validator function
-            InputValidator.ValidationResult result = validator.apply(input);
-            if (result.isValid()) {
-                return input;
-            } else {
-                System.out.println("Error: " + result.getErrorMessage());
-                System.out.println("Please try again.");
+                // Display the prompt and read user input
+                System.out.print(prompt);
+                System.out.flush(); // Ensure prompt is displayed immediately
+
+                // Check if scanner has next line before trying to read
+                if (!scanner.hasNextLine()) {
+                    System.err.println("Error: No input available. Please run the program in an interactive terminal.");
+                    exit(1);
+                }
+
+                String input = scanner.nextLine().trim();
+
+                // Validate the input using the provided validator function
+                InputValidator.ValidationResult result = validator.apply(input);
+                if (result.isValid()) {
+                    return input;
+                } else {
+                    System.out.println("Error: " + result.getErrorMessage());
+                    System.out.println("Please try again.");
+                }
+            } catch (java.util.NoSuchElementException e) {
+                System.err.println("Error: Input stream closed unexpectedly. Please run the program in an interactive terminal.");
+                System.err.println("If you're using an IDE, try running from the command line instead.");
+                exit(1);
+            } catch (java.io.IOException e) {
+                System.err.println("Error: Unable to read input - " + e.getMessage());
+                exit(1);
+            } catch (Exception e) {
+                System.err.println("Unexpected error while reading input: " + e.getMessage());
+                exit(1);
             }
         }
     }
