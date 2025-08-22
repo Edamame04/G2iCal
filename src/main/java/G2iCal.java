@@ -20,6 +20,7 @@ import static java.lang.System.exit;
  */
 public class G2iCal {
     static String EXPORT_FILE_PATH = System.getProperty("user.home") + "/Downloads";
+    private static final Scanner scanner = new Scanner(System.in);
 
     /**
      * Main method that orchestrates the calendar selection and iCal generation process.
@@ -87,9 +88,6 @@ public class G2iCal {
      * @return DateTime object representing the start date
      */
     private static DateTime getUserInputStartDate(String... args) {
-        // Create a Scanner for user input
-        Scanner scanner = new Scanner(System.in);
-
         // If start date is provided as an argument, use it directly
         if (args.length > 0) {
             String startDate = args[0].trim();
@@ -103,7 +101,7 @@ public class G2iCal {
         }
 
         // Prompt the user for a start date
-        return InputValidator.convertToDateTime(promptForValidInput(scanner, "Enter start date (YYYY-MM-DD): ",
+        return InputValidator.convertToDateTime(promptForValidInput("Enter start date (YYYY-MM-DD): ",
                 dateStr -> InputValidator.validateDate(dateStr, "Start date")), false);
     }
 
@@ -116,9 +114,6 @@ public class G2iCal {
      * @return DateTime object representing the end date
      */
     private static DateTime getUserInputEndDate(DateTime startDate, String... args) {
-        // Create a Scanner for user input
-        Scanner scanner = new Scanner(System.in);
-
         // If start date is provided as an argument, use it directly
         if (args.length > 1) {
             String endDate = args[1].trim();
@@ -132,7 +127,7 @@ public class G2iCal {
         }
 
         // Prompt the user for a start date
-        return InputValidator.convertToDateTime(promptForValidInput(scanner, "Enter end date (YYYY-MM-DD): ",
+        return InputValidator.convertToDateTime(promptForValidInput("Enter end date (YYYY-MM-DD): ",
                 dateStr -> InputValidator.validateDateRange(startDate, dateStr)), true);
 
     }
@@ -147,9 +142,6 @@ public class G2iCal {
      * @return normalized filename with .ics extension
      */
     private static String getUserInputFileName(String... args) {
-        // Create a Scanner for user input
-        Scanner scanner = new Scanner(System.in);
-
         // If filename is provided as an argument, use it directly
         if (args.length > 2) {
             String fileName = args[2].trim();
@@ -163,7 +155,7 @@ public class G2iCal {
         }
 
         // Prompt the user for a filename
-        return InputValidator.normalizeFileName(promptForValidInput(scanner, "Enter output filename: ",
+        return InputValidator.normalizeFileName(promptForValidInput("Enter output filename: ",
                 InputValidator::validateFileName));
     }
 
@@ -183,8 +175,6 @@ public class G2iCal {
         } catch (IOException | GeneralSecurityException e) {
             throw new RuntimeException(e);
         }
-        // Create a Scanner for user input
-        Scanner scanner = new Scanner(System.in);
 
         // If calendar index is provided as an argument, use it directly
         if (args.length > 3) {
@@ -204,7 +194,6 @@ public class G2iCal {
         return InputValidator.getCalendarIdByIndex(
                 Integer.parseInt(
                         promptForValidInput(
-                                scanner,
                                 "Select a calendar by index: ",
                                 input -> InputValidator.validateCalendarIndex(input, finalCalendars))),
                 calendars);
@@ -214,12 +203,11 @@ public class G2iCal {
     /**
      * Prompts the user for valid input with retry mechanism.
      *
-     * @param scanner   the Scanner for input
      * @param prompt    the prompt message
      * @param validator the validation function
      * @return valid input string
      */
-    private static String promptForValidInput(Scanner scanner, String prompt, java.util.function.Function<String, InputValidator.ValidationResult> validator) {
+    private static String promptForValidInput(String prompt, java.util.function.Function<String, InputValidator.ValidationResult> validator) {
         while (true) { // Loop until valid input is received or user exits
             // Display the prompt and read user input
             System.out.print(prompt);
