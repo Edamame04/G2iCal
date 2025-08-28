@@ -35,6 +35,7 @@ tasks.register('runCli', JavaExec) {
     description = "Startet die CLI-Version"
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'G2iCal'
+    standardInput = System.in
 }
 
 // Extra-Task für GUI
